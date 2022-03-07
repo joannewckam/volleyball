@@ -1,10 +1,15 @@
 import './GreyCircle.css'
-// import {useEffect, useState} from 'react'
+import useDraggable from '../../hooks/use-draggable'
 
-export default function GreyCircle() {
+export default function Court() {
+const {position} = useDraggable('circle')
     return (
-    <div id="handle" className="GreyCircle component">
-  
-    </div>
+        <div id="circle" className="GreyCircle"
+           style= {{
+           top:position.y,
+           left:position.x,
+       }}>
+        </div>
     )
 }
+
