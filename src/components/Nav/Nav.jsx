@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Nav(props){
+function Nav(){
     return(
-        <div>
-            Link
+        <div className="component">
+            Nav
         </div>
     )
 }

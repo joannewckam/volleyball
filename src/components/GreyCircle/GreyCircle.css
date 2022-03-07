@@ -1,0 +1,7 @@
+.GreyCircle {
+	width: 45px;
+	height: 45px;
+	border-radius: 45px;
+	background-color: #303747;
+	z-index: 100;
+}
