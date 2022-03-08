@@ -14,29 +14,19 @@ export default class App extends Component {
 		name: "",
 		links: ["formations", "teams", "roles", "profile"],
 		roles: ["OH", "S", "M", "RS"],
-		// players: [
-		// 	{
-		// 		name: "Jo",
-		// 		preferredPosition: "",
-		// 		number: "",
-		// 	},
-		// ],
 	};
 
 	render() {
 		return (
 			<main className="App">
 				<Header />
-				<Gym />
-				<PlayerIcon />
-				<nav className="navBar">
-					<AuthPage />
-					<Nav links={this.state.links} />
-					<Route
-						path="/players"
-						render={(props) => <PlayersPage players={this.state.players} />}
-					/>
-				</nav>
+				<Switch>
+					<Route path="/" exact component={Gym} />
+					<Route path="/signin" render={(props) => <AuthPage {...props} />} />
+					<Route path="/players" render={(props) => <PlayersPage {...props} />} />
+					<PlayerIcon />
+				</Switch>
+				<Nav />
 			</main>
 		);
 	}
