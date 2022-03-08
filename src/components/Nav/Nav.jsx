@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
-function Nav(){
+function Nav(props){
     return(
         <div className="component">
-            Nav
+            {props.links.map(l => <Link>{l}</Link>)}
         </div>
     )
 }

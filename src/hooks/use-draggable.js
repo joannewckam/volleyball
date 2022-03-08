@@ -10,7 +10,6 @@ export default function useDraggable(id) {
 		circle.addEventListener("mousedown", function (e) {
 			e.preventDefault();
 			circle.style.pointerEvents = "none";
-
 			document.body.addEventListener("mousemove", move);
 			document.body.addEventListener("mouseup", () => {
 				document.body.removeEventListener("mousemove", move);
