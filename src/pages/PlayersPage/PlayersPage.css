@@ -2,8 +2,11 @@
 	box-sizing: border-box;
 }
 .playerContainer {
-	display: flex;
+	display: grid;
 	justify-items: center;
+	align-items: center;
+}
+.playerCard {
 }
 section {
 	font-family: Arial, Helvetica, sans-serif;
@@ -13,31 +16,26 @@ section {
 	justify-items: center;
 	align-items: center;
 	background-color: #303747;
+	border-radius: 5px;
 }
 
 h2 {
-	color: #bb561c;
+	color: #303747;
 	margin: 0;
 	text-align: center;
 }
 
-section > article {
+article {
 	display: flex;
 	justify-content: space-between;
 	min-width: 15rem;
 	color: white;
 	margin: 0.1rem;
-	background-color: #737495;
+	background-color: #f29c46;
 }
 
 article > div {
 	padding: 0.5rem;
-}
-
-article > div:nth-child(2) {
-	width: 2rem;
-	background-color: #f17d80;
-	text-align: center;
 }
 
 label {
@@ -45,6 +43,7 @@ label {
 	display: block;
 	align-items: center;
 	margin-top: 0.5rem;
+	font-weight: bold;
 }
 
 label span {
@@ -54,12 +53,13 @@ label span {
 
 input,
 select {
+	text-align: center;
 	width: 100%;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 1rem;
 	font-weight: bold;
 	padding: 0.4rem;
-	color: #f17d80;
+	color: #f29c46;
 	border: 2px solid #737495;
 	border-radius: 5px;
 	outline: none;
@@ -67,12 +67,12 @@ select {
 	-webkit-appearance: none;
 }
 
-button {
+.addPlayer {
 	display: block;
 	align-items: center;
-	font-size: 1rem;
-	margin: 0.5rem 0 0 auto;
-	padding: 0.4rem;
+	font-weight: bold;
+	margin: 15px 0 0 85px;
+	padding: 10px;
 	background-color: #f29c46;
 	color: white;
 	border-radius: 5px;

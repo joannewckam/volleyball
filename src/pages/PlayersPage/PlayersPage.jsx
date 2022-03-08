@@ -13,6 +13,15 @@ export default class PlayersPage extends Component {
         <>
             <h2>Players Page</h2> 
                 <div className="playerContainer">
+                    <div className="playerCard">
+                    {this.state.players.map(p => (
+                        <article key={p.name}>
+                            <div>{p.name}</div>
+                            <div>{p.position}</div>
+                            <div>{p.number}</div>
+                            </article>
+                    ))}
+                    </div>
                     <section>
                         <form>
                             <label>
@@ -32,7 +41,7 @@ export default class PlayersPage extends Component {
                                 <span>Number</span>
                                 <input name='number'/>
                             </label>
-                            <button type="submit">Add Person</button>
+                            <button className="addPlayer"type="submit">Add Person</button>
                         </form>
                     </section>    
                 </div>
