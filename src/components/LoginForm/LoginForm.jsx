@@ -40,7 +40,7 @@ render(){
         <>
             <div className="loginPage" onSubmit={this.handleSubmit}>
                 <section>
-                        <form autocomplete="off">
+                        <form autoComplete="off">
                             <label></label>
                             <input type="text" name="email" value={this.state.email} onChange={this.handleChange} placeholder="email" required />
                             <label></label>

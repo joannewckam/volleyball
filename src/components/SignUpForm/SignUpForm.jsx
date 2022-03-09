@@ -33,7 +33,6 @@ export default class SignUpForm extends Component {
       
       const userDoc = JSON.parse(atob(token.split('.')[1])).user; // 5. Decode the token + put user document into state
       this.props.setUserInState(userDoc)
-
     } catch (err) {
         console.log("SignupForm error", err)
       this.setState({ error: 'Sign Up Failed - Try Again' });
@@ -55,7 +54,7 @@ export default class SignUpForm extends Component {
                                 <input type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="password"required />
                                 <label></label>
                                 <input type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange} placeholder="password"required />
-                                <button className="login" type="submit">Submit</button>
+                                <button className="login" disabled={disable} type="submit">Submit</button>
                             </form>
                     </section>    
                 </div>
