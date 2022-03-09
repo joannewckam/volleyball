@@ -11,21 +11,38 @@ import PlayersPage from "./pages/PlayersPage/PlayersPage";
 export default class App extends Component {
 	state = {
 		user: null,
-		name: "",
-		links: ["formations", "teams", "roles", "profile"],
-		roles: ["OH", "S", "M", "RS"],
 	};
+	setUserInState = (incomingUserData) => {
+		this.setState({ user: incomingUserData });
+	};
+	componentDidMount() {
+		let token = localStorage.getItem("token");
+		if (token) {
+			const payload = JSON.parse(atob(token.split(".")[1]));
+			if (payload.exp < Date.now() / 1000) {
+				localStorage.removeItem("token");
+				token = null;
+			} else {
+				let userDoc = payload.user;
+				this.setState({ user: userDoc });
+			}
+		}
+	}
 
 	render() {
 		return (
 			<main className="App">
 				<Header />
-				<Switch>
-					<Route path="/" exact component={Gym} />
-					<Route path="/signin" render={(props) => <AuthPage {...props} />} />
-					<Route path="/players" render={(props) => <PlayersPage {...props} />} />
-					<PlayerIcon />
-				</Switch>
+				{this.state.user ? (
+					<Switch>
+						<Route path="/" exact component={Gym} />
+						<Route path="/signin" render={(props) => <AuthPage {...props} />} />
+						<Route path="/players" render={(props) => <PlayersPage {...props} />} />
+						<PlayerIcon />
+					</Switch>
+				) : (
+					<AuthPage setUserInState={this.setUserInState} />
+				)}
 				<Nav />
 			</main>
 		);

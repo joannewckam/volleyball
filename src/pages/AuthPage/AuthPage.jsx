@@ -1,22 +1,26 @@
 import './AuthPage.css'
-export default function AuthPage (){
-    return (
-        <div className="loginPage">
-             <section>
-                    <form id="login">
-                        <label>
-                            <input name='email' placeholder="email"/>
-                        </label>
-                        <label>
-                            <input name='password' placeholder="password"/>
-                        </label>
-                        <label>
-                            <input name='password' placeholder="password"/>
-                        </label>
-            <button className="login" type="submit" form="login">Login</button>
-            <button className="signup" form="login">Signup</button>
-                    </form>
-            </section>    
-        </div>
-    )
+import {Component} from 'react'
+import LoginForm from '../../components/LoginForm/LoginForm'
+import SignUpForm from '../../components/SignUpForm/SignUpForm';
+
+export default class AuthPage extends Component {
+    state = {
+        showLogin: true,
+    }
+    render() {
+        return (
+        <>
+            <main className="AuthPage">
+                {this.state.showLogin ?
+                <LoginForm setUserInState={this.props.setUserInState}/> 
+                :
+                <SignUpForm setUserInState={this.props.setUserInState}/>
+                }
+                    <h3 onClick={() => this.setState({ showLogin: !this.state.showLogin })}>
+                    {this.state.showLogin ? 'SIGN UP' : 'LOG IN'}
+                    </h3>
+                </main>
+        </>
+        )
+    }
 }
