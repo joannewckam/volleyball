@@ -3,11 +3,35 @@ import './PlayersPage.css'
 
 export default class PlayersPage extends Component {
     state = {
-        players: [{name: 'Jenni', position: 'OH', number:1234567890}],
+        players: [{}],
         name: '',
         position: '',
-        number: 1234567890,
+        number: '',
     }
+    handleChange = (evt) => {
+        this.setState({
+            [evt.target.name]:evt.target.value,
+            error:''
+        })
+    }
+    handleSubmit = async (evt) => {
+        try {
+            let fetchResponse = await fetch ('/api/players', {
+                method: 'POST',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    name: this.state.name,
+                    position: this.state.position,
+                    number: this.state.number,
+                })
+            })
+            let serverResponse = await fetchResponse.json()
+            console.log("Success:", serverResponse)
+        }catch (err){
+            console.error("Error", err)
+        }
+    }
+
     render() {
     return(
         <>
@@ -23,14 +47,14 @@ export default class PlayersPage extends Component {
                     ))}
                     </div>
                     <section>
-                        <form>
+                        <form autoComplete="off" onSubmit={this.handleSubmit}>
                             <label>
                                 <span>Name</span>
-                                <input name='name'/>
+                                <input name='name' value={this.state.name} onChange={this.handleChange}/>
                             </label>
                             <label>
                                 <span>Position</span>
-                                <select name="position">
+                                <select name="position" value={this.state.position} onChange={this.handleChange}>
                                     <option value="OH">OH</option>
                                     <option value="M">M</option>
                                     <option value="S">S</option>
@@ -39,7 +63,7 @@ export default class PlayersPage extends Component {
                             </label>
                             <label>
                                 <span>Number</span>
-                                <input name='number'/>
+                                <input name='number' value={this.state.number} onChange={this.handleChange}/>
                             </label>
                             <button className="addPlayer"type="submit">Add Person</button>
                         </form>
