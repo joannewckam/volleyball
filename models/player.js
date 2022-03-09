@@ -7,7 +7,7 @@ const playerSchema = new Schema({
 		type: String,
 		enum: ["OH", "M", "S", "RS"],
 	},
-	number: { type: Number },
+	number: { type: String },
 });
 let PlayerModel = mongoose.model("Player", playerSchema);
 module.exports = PlayerModel;

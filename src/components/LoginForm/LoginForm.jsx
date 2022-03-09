@@ -1,5 +1,6 @@
 import { Component } from 'react'
-  
+import {Link} from 'react-router-dom'
+import './LoginForm.css'
 export default class LoginForm extends Component {
 state ={
     email: '',
@@ -47,6 +48,7 @@ render(){
                             <input type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="password" required />
                             <button className="login" type="submit" >Login</button>
                         </form>
+                            <Link to="/signup"><button className="signup" >Signup</button></Link>
                 </section>    
                 <p className="error-message">&nbsp;{this.state.error}</p>
             </div>

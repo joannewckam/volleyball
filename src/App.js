@@ -5,7 +5,7 @@ import Nav from "./components/Nav/Nav";
 import Header from "./components/Header/Header";
 import Gym from "./components/Gym/Gym";
 import PlayerIcon from "./components/PlayerIcon/PlayerIcon";
-import AuthPage from "./pages/AuthPage/AuthPage";
+import LoginForm from "./components/LoginForm/LoginForm";
 import PlayersPage from "./pages/PlayersPage/PlayersPage";
 
 export default class App extends Component {
@@ -36,12 +36,12 @@ export default class App extends Component {
 				{this.state.user ? (
 					<Switch>
 						<Route path="/" exact component={Gym} />
-						<Route path="/signin" render={(props) => <AuthPage {...props} />} />
+						<Route path="/login" render={(props) => <LoginForm {...props} />} />
 						<Route path="/players" render={(props) => <PlayersPage {...props} />} />
 						<PlayerIcon />
 					</Switch>
 				) : (
-					<AuthPage setUserInState={this.setUserInState} />
+					<LoginForm setUserInState={this.setUserInState} />
 				)}
 				<Nav />
 			</main>

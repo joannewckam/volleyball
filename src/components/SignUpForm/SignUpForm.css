@@ -1,5 +1,5 @@
-.loginPage {
-	height: 85vh;
+.signUpPage {
+	height: 100vh;
 	display: grid;
 	justify-items: center;
 	align-items: center;
@@ -53,8 +53,7 @@ input {
 	align-items: center;
 	font-weight: bold;
 	font-size: 0.9rem;
-	width: 100%;
-	margin: 10px 0 0 auto;
+	width: 260px;
 	padding: 10px;
 	background-color: white;
 	color: #303747;

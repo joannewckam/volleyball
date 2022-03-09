@@ -1,13 +1,8 @@
-* {
-	box-sizing: border-box;
-}
-.playerContainer {
+.loginPage {
+	height: 80vh;
 	display: grid;
 	justify-items: center;
 	align-items: center;
-	margin-top: 30px;
-}
-.playerCard {
 }
 section {
 	font-family: Arial, Helvetica, sans-serif;
@@ -18,62 +13,35 @@ section {
 	align-items: center;
 	background-color: #303747;
 	border-radius: 5px;
-	margin-top: 30px;
-}
-
-h2 {
-	color: #303747;
-	margin: 0;
-	text-align: center;
-}
-
-article {
-	display: flex;
-	justify-content: space-between;
-	min-width: 15rem;
-	color: white;
-	margin: 0.1rem;
-	background-color: #f29c46;
-}
-
-article > div {
-	padding: 0.5rem;
 }
 
 label {
 	display: flex;
 	display: block;
 	align-items: center;
-	margin-top: 0.5rem;
+	margin-top: 20px;
 	font-weight: bold;
 }
 
-label span {
-	color: white;
-	width: 4.5rem;
-}
-
-input,
-select {
+input {
 	text-align: center;
 	width: 100%;
-	font-family: Arial, Helvetica, sans-serif;
 	font-size: 1rem;
 	font-weight: bold;
 	padding: 0.4rem;
 	color: #f29c46;
-	border: 2px solid #737495;
 	border-radius: 5px;
 	outline: none;
 	border: none;
 	-webkit-appearance: none;
 }
 
-.addPlayer {
-	display: block;
+.login {
 	align-items: center;
 	font-weight: bold;
-	margin: 15px 0 0 85px;
+	font-size: 1rem;
+	width: 100%;
+	margin: 30px 0 0 auto;
 	padding: 10px;
 	background-color: #f29c46;
 	color: white;
@@ -81,7 +49,18 @@ select {
 	border: none;
 	outline: none;
 }
-
+.signup {
+	align-items: center;
+	font-weight: bold;
+	font-size: 0.9rem;
+	width: 260px;
+	padding: 10px;
+	background-color: white;
+	color: #303747;
+	border-radius: 5px;
+	border: none;
+	outline: none;
+}
 button:hover {
 	color: white;
 	background-color: #bb561c;

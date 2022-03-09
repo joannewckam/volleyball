@@ -3,7 +3,7 @@ import './PlayersPage.css'
 
 export default class PlayersPage extends Component {
     state = {
-        players: [{}],
+        players: [],
         name: '',
         position: '',
         number: '',
@@ -14,7 +14,8 @@ export default class PlayersPage extends Component {
             error:''
         })
     }
-    handleSubmit = async (evt) => {
+    handleSubmit = async (e) => {
+        e.preventDefault()
         try {
             let fetchResponse = await fetch ('/api/players', {
                 method: 'POST',
@@ -26,16 +27,35 @@ export default class PlayersPage extends Component {
                 })
             })
             let serverResponse = await fetchResponse.json()
+            
+            let fetchPlayersResponse = await fetch('/api/players')
+            let players = await fetchPlayersResponse.json()
+            console.log('playerresponse', players)
             console.log("Success:", serverResponse)
+            this.setState({
+                players: players,
+                name:'',
+                position: '',
+                number: '',
+            })
         }catch (err){
             console.error("Error", err)
+        }
+    }
+    async componentDidMount() {
+        try {
+            let fetchPlayersResponse = await fetch('/api/players')
+            let players = await fetchPlayersResponse.json()
+            this.setState({players: players})
+        }catch (err) {
+            console.error('error:', err)
         }
     }
 
     render() {
     return(
         <>
-            <h2>Players Page</h2> 
+            <h2>Players</h2> 
                 <div className="playerContainer">
                     <div className="playerCard">
                     {this.state.players.map(p => (
