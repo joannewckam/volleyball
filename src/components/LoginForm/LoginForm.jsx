@@ -21,7 +21,6 @@ handleSubmit = async (evt) => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({email: this.state.email, password: this.state.password, })
         })
-
         if (!fetchResponse.ok) throw new Error('Fetch failed - Bad request')
 
         let token = await fetchResponse.json()
@@ -48,8 +47,8 @@ render(){
                             <input type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="password" required />
                             <button className="login" type="submit" >Login</button>
                         </form>
-                            <Link to="/signup"><button className="signup" >Signup</button></Link>
-                </section>    
+                         <button className="signup" onClick={this.props.toggleAuth} >Signup</button> 
+                </section>  
                 <p className="error-message">&nbsp;{this.state.error}</p>
             </div>
         </>

@@ -1,11 +1,12 @@
 import "./App.css";
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
 import Header from "./components/Header/Header";
 import Gym from "./components/Gym/Gym";
 import PlayerIcon from "./components/PlayerIcon/PlayerIcon";
 import LoginForm from "./components/LoginForm/LoginForm";
+import AuthPage from "./pages/AuthPage/AuthPage";
 import PlayersPage from "./pages/PlayersPage/PlayersPage";
 
 export default class App extends Component {
@@ -15,6 +16,11 @@ export default class App extends Component {
 	setUserInState = (incomingUserData) => {
 		this.setState({ user: incomingUserData });
 	};
+	removeUserFromState = () => {
+		this.setState({ user: null });
+		localStorage.removeItem("token");
+	};
+
 	componentDidMount() {
 		let token = localStorage.getItem("token");
 		if (token) {
@@ -41,9 +47,12 @@ export default class App extends Component {
 						<PlayerIcon />
 					</Switch>
 				) : (
-					<LoginForm setUserInState={this.setUserInState} />
+					<AuthPage user={this.state.user} setUserInState={this.setUserInState} />
 				)}
-				<Nav />
+				<Nav
+					user={this.state.user}
+					removeUserFromState={this.removeUserFromState}
+				/>
 			</main>
 		);
 	}

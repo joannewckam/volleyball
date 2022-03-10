@@ -57,6 +57,7 @@ export default class SignUpForm extends Component {
                                 <input type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange} placeholder="password"required />
                                 <button className="login" disabled={disable} type="submit">Signup</button>
                             </form>
+                                <button className="signup" onClick={this.props.toggleAuth} >Have an account?</button>
                     </section>    
                 </div>
             </>
