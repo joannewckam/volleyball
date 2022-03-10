@@ -1,17 +1,29 @@
 import './GreyCircle.css'
-import useDraggable from '../../hooks/use-draggable'
+// import useDraggable from '../../hooks/use-draggable'
+import Draggable from 'react-draggable'
+import { useState } from 'react'
 
 export default function GreyCircle(props) {
+const [positions, setPositions]= useState({})
 
-const {position} = useDraggable(props.id)
+function handleStop(e, data) {
+    let curPositions = {...positions}
+    const circleId = e.target.id
+    curPositions[circleId]= {}
+    curPositions[circleId]['x']= data.x
+    curPositions[circleId]['y']= data.y
+    setPositions(curPositions)
+    console.log(curPositions[circleId])
+}
+
     return (
-        <>
-            <div id={props.id}className="GreyCircle"
-            style= {{
-            top:position.y,
-            left:position.x,
-        }}>
-            </div>
+        <>  
+            <Draggable
+            onStop = {handleStop}
+            >
+            <div id={props.id} className="GreyCircle"></div>
+            </Draggable>
+            
         </>
     )
 }

@@ -4,7 +4,6 @@ import { Route, Switch } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
 import Header from "./components/Header/Header";
 import Gym from "./components/Gym/Gym";
-import PlayerIcon from "./components/PlayerIcon/PlayerIcon";
 import LoginForm from "./components/LoginForm/LoginForm";
 import AuthPage from "./pages/AuthPage/AuthPage";
 import PlayersPage from "./pages/PlayersPage/PlayersPage";
@@ -44,7 +43,6 @@ export default class App extends Component {
 						<Route path="/" exact component={Gym} />
 						<Route path="/login" render={(props) => <LoginForm {...props} />} />
 						<Route path="/players" render={(props) => <PlayersPage {...props} />} />
-						<PlayerIcon />
 					</Switch>
 				) : (
 					<AuthPage user={this.state.user} setUserInState={this.setUserInState} />

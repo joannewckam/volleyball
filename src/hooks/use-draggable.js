@@ -14,7 +14,6 @@ export default function useDraggable(id) {
 			document.body.addEventListener("mouseup", () => {
 				document.body.removeEventListener("mousemove", move);
 				circle.style.pointerEvents = "initial";
-				console.log(e);
 			});
 		});
 		return () => {
