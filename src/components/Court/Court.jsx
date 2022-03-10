@@ -6,6 +6,7 @@ export default function Court () {
     const [formations, setFormations] = useState(
         [],
     )
+    const [activeFormation, setActiveFormation] = useState({})
 
     function handleStop(e, data) {
         let curPositions = {...positions}
@@ -43,36 +44,38 @@ export default function Court () {
             console.error('Error', err)
         }
     }
-    async function changeFormation() {
+    async function changeFormation(evt) {
         console.log('I am changeFormation')
-        let newPositions = {...positions}
-        console.log('I am new positions', newPositions)
+        setActiveFormation(formations[evt.target.value])
     }
 
-    useEffect(async () => {
+    useEffect(() => {
+        async function fetchFormation(){
             let fetchFormationsResponse = await fetch('/api/formations')
                 if (!fetchFormationsResponse.ok) throw new Error('Fetch failed - Bad request')
             console.log(fetchFormationsResponse)
             let formations = await fetchFormationsResponse.json()
             setFormations(formations)
             console.log(formations)
+        }
+        fetchFormation()
     },[])
 
     return (
         <>
         <div className="Court">
-                <GreyCircle id={'circle4'} handleStop={handleStop}/>
-                <GreyCircle id={'circle3'} handleStop={handleStop}/>
-                <GreyCircle id={'circle2'} handleStop={handleStop}/>
-                <GreyCircle id={'circle1'} handleStop={handleStop}/>
-                <GreyCircle id={'circle5'} handleStop={handleStop}/>
-                <GreyCircle id={'circle6'} handleStop={handleStop}/>
+                <GreyCircle id={'circle4'} handleStop={handleStop} position={activeFormation.circle4}/>
+                <GreyCircle id={'circle3'} handleStop={handleStop} position={activeFormation.circle3}/>
+                <GreyCircle id={'circle2'} handleStop={handleStop} position={activeFormation.circle2}/>
+                <GreyCircle id={'circle1'} handleStop={handleStop} position={activeFormation.circle1}/>
+                <GreyCircle id={'circle5'} handleStop={handleStop} position={activeFormation.circle5}/>
+                <GreyCircle id={'circle6'} handleStop={handleStop} position={activeFormation.circle6}/>
         </div>
                 <select name="formation" onChange={changeFormation}>
                     {formations.length ?
-                    formations.map(f => (<option value={f.id} key={f.id}>{f.name}</option>))
+                    formations.map((f, index)=> (<option value={index} key={f.id}>{f.name}</option>))
                     :
-                    "No save formations yet"
+                    "No saved formations yet"
                     }
                 </select>
                 <button className="save" onClick={saveFormation}>Save formation</button>
