@@ -5,3 +5,12 @@
 	width: 350xpx;
 	position: relative;
 }
+.save {
+	background-color: #f29c46;
+	color: white;
+	border-radius: 5px;
+	border: none;
+	outline: none;
+	padding: 5px;
+	margin-top: 10px;
+}
