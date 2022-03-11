@@ -4,7 +4,7 @@
 	height: 550px;
 	width: 350xpx;
 	position: relative;
-	/* display: grid; */
+	display: grid;
 }
 .save {
 	background-color: #f29c46;

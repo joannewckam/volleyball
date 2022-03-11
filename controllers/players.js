@@ -4,6 +4,7 @@ module.exports = {
 	create,
 	index,
 	deletePlayer,
+	editPlayer,
 };
 
 async function create(req, res) {
@@ -39,6 +40,24 @@ async function deletePlayer(req, res) {
 		let players = await PlayerModel.find({}).exec();
 		res.status(200).json(players);
 	} catch (err) {
-		res.statis(400).json(err);
+		res.status(400).json(err);
+	}
+}
+
+async function editPlayer(req, res) {
+	console.log(req.body);
+	try {
+		let players = await PlayerModel.findByIdAndUpdate(
+			{ _id: req.body.id },
+			{
+				name: req.body.name,
+				position: req.body.position,
+				number: req.body.number,
+			},
+			{ returnDocument: "after" }
+		).exec();
+		res.status(200).json(players);
+	} catch (err) {
+		res.status(400).json(err);
 	}
 }

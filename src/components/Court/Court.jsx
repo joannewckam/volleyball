@@ -1,6 +1,7 @@
 import './Court.css'
 import GreyCircle from "../GreyCircle/GreyCircle"
 import { useEffect, useState } from 'react'
+
 export default function Court () {
     const [positions, setPositions]= useState(
         {})

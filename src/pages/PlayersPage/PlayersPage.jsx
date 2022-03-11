@@ -7,7 +7,10 @@ export default class PlayersPage extends Component {
         name: '',
         position: '',
         number: '',
+        isEdit: false,
+        id: '',
     }
+
     handleChange = (evt) => {
         this.setState({
             [evt.target.name]:evt.target.value,
@@ -16,7 +19,12 @@ export default class PlayersPage extends Component {
     }
     handleSubmit = async (e) => {
         e.preventDefault()
+        if (this.state.isEdit) {
+            this.handleUpdate()
+            
+        } else {
         try {
+            console.log('bypassing?')
             let fetchResponse = await fetch ('/api/players', {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
@@ -40,9 +48,36 @@ export default class PlayersPage extends Component {
             })
         }catch (err){
             console.error("Error", err)
+            }
         }
     }
-
+    
+    handleUpdate = async () => {
+        console.log("updated")
+        try {
+            let fetchResponse = await fetch ('/api/players', {
+                method: 'PUT',
+                headers: {"Content-Type":"application/json"},
+                body: JSON.stringify({
+                    id: this.state.id,
+                    name: this.state.name,
+                    position: this.state.position,
+                    number: this.state.number,
+                })
+            })
+            if (!fetchResponse.ok) throw new Error ("Fetch failed = Bad request")
+            this.setState({
+                    id: '',
+                    name:'',
+                    position: '',
+                    number: '',
+                    isEdit: false,
+                })
+                this.componentDidMount()
+        } catch(err) {
+            console.error('error', err)
+        }
+    }
     handleDelete = async (id) => {
         try{
             let fetchResponse = await fetch ('/api/players/', {
@@ -59,10 +94,27 @@ export default class PlayersPage extends Component {
         }
     }
 
+    handleUpdateChange = (e) => {
+        console.log('update change',e)
+
+        let map = this.state.players.map((e) => e._id)
+        console.log(map)
+        let idx = map.indexOf(e)
+        console.log(this.state.players[idx]._id)
+        this.setState({
+            id: this.state.players[idx]._id,
+            name: this.state.players[idx].name,
+            position: this.state.players[idx].position,
+            number:this.state.players[idx].number,
+            isEdit: true,
+        })
+       
+    }
+    
     async componentDidMount() {
         try {
-            let fetchPlayersResponse = await fetch('/api/players/')
-            let players = await fetchPlayersResponse.json()
+            let fetchResponse = await fetch('/api/players/')
+            let players = await fetchResponse.json()
             this.setState({players: players})
         }catch (err) {
             console.error('error:', err)
@@ -75,12 +127,14 @@ export default class PlayersPage extends Component {
             <h2>Players</h2> 
                 <div className="playerContainer">
                     <div className="playerCard">
-                    {this.state.players.map(p => (
+
+                    {this.state.players && this.state.players.map(p => (
                         <article key={p._id}>
                             <div>{p.name}</div>
                             <div>{p.position}</div>
                             <div>{p.number}</div>
                             <button onClick={()=>(this.handleDelete(p._id))}>Delete</button>
+                            <button onClick={()=>(this.handleUpdateChange(p._id))}>Edit</button>
                             </article>
                     ))}
                     </div>
@@ -103,9 +157,12 @@ export default class PlayersPage extends Component {
                                 <span>Number</span>
                                 <input name='number' value={this.state.number} onChange={this.handleChange}/>
                             </label>
-                            <button className="addPlayer"type="submit">Add Person</button>
-                        </form>
-                    </section>    
+
+                            <button className="addPlayer"type="submit">{this.state.isEdit? 'Submit' : 'Add Person' } </button>
+                        </form> 
+                       
+                    </section>
+
                 </div>
         </>
     )
