@@ -6,7 +6,6 @@ export default function Nav(props) {
         <nav>
             <ul className='nav-links'>
                 <Link to="/"><li>Formations</li></Link>
-                <Link to="/"><li>Roles</li></Link>
                 <Link to="/players"><li>Players</li></Link>
             {props.user ? 
                 (<Link to="/" onClick={props.removeUserFromState}><li>Logout</li></Link>)

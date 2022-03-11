@@ -42,9 +42,26 @@ export default class PlayersPage extends Component {
             console.error("Error", err)
         }
     }
+
+    handleDelete = async (id) => {
+        try{
+            let fetchResponse = await fetch ('/api/players/', {
+                method:'DELETE',
+                headers: {"Content-Type":"application/json"},
+                body: JSON.stringify({p_id:id})
+            })
+            if (!fetchResponse.ok) throw new Error("Fetch failed = Bad request")
+            let players = await fetchResponse.json()
+            this.setState({players:players})
+            
+        }catch (err) {
+
+        }
+    }
+
     async componentDidMount() {
         try {
-            let fetchPlayersResponse = await fetch('/api/players')
+            let fetchPlayersResponse = await fetch('/api/players/')
             let players = await fetchPlayersResponse.json()
             this.setState({players: players})
         }catch (err) {
@@ -59,10 +76,11 @@ export default class PlayersPage extends Component {
                 <div className="playerContainer">
                     <div className="playerCard">
                     {this.state.players.map(p => (
-                        <article key={p.name}>
+                        <article key={p._id}>
                             <div>{p.name}</div>
                             <div>{p.position}</div>
                             <div>{p.number}</div>
+                            <button onClick={()=>(this.handleDelete(p._id))}>Delete</button>
                             </article>
                     ))}
                     </div>

@@ -7,4 +7,6 @@ router.post("/", playerCtrl.create);
 //GET /api/players
 router.get("/", playerCtrl.index);
 
+router.delete("/", playerCtrl.deletePlayer);
+
 module.exports = router;

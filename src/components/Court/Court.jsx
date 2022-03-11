@@ -2,11 +2,11 @@ import './Court.css'
 import GreyCircle from "../GreyCircle/GreyCircle"
 import { useEffect, useState } from 'react'
 export default function Court () {
-    const [positions, setPositions]= useState({})
-    const [formations, setFormations] = useState(
-        [],
-    )
+    const [positions, setPositions]= useState(
+        {})
+    const [formations, setFormations] = useState([])
     const [activeFormation, setActiveFormation] = useState({})
+    const [name, setName] = useState ('name')
 
     function handleStop(e, data) {
         let curPositions = {...positions}
@@ -25,7 +25,7 @@ export default function Court () {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
-                    name: '', 
+                    name: name, 
                     circle1: positions.circle1,
                     circle2: positions.circle2,
                     circle3: positions.circle3,
@@ -64,13 +64,26 @@ export default function Court () {
     return (
         <>
         <div className="Court">
+                <div className="four">
                 <GreyCircle id={'circle4'} handleStop={handleStop} position={activeFormation.circle4}/>
+                </div>
+                <div className="three">
                 <GreyCircle id={'circle3'} handleStop={handleStop} position={activeFormation.circle3}/>
+                </div>
+                <div className="two">
                 <GreyCircle id={'circle2'} handleStop={handleStop} position={activeFormation.circle2}/>
+                </div>
+                <div className="one">
                 <GreyCircle id={'circle1'} handleStop={handleStop} position={activeFormation.circle1}/>
+                </div>
+                <div className="five">
                 <GreyCircle id={'circle5'} handleStop={handleStop} position={activeFormation.circle5}/>
+                </div>
+                <div className="six">
                 <GreyCircle id={'circle6'} handleStop={handleStop} position={activeFormation.circle6}/>
+                </div>
         </div>
+        <div className="formation">
                 <select name="formation" onChange={changeFormation}>
                     {formations.length ?
                     formations.map((f, index)=> (<option value={index} key={f.id}>{f.name}</option>))
@@ -78,7 +91,13 @@ export default function Court () {
                     "No saved formations yet"
                     }
                 </select>
-                <button className="save" onClick={saveFormation}>Save formation</button>
+
+                <form>
+                    <input value={name} onChange={(e) => setName(e.target.value)} name="name" className="formationName" type="text" autocomplete="off"/>
+                </form>
+                <button className="save" onClick={saveFormation}>Save</button>
+
+        </div>        
         </>
     )
 }

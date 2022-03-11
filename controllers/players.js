@@ -3,6 +3,7 @@ const PlayerModel = require("../models/player.js");
 module.exports = {
 	create,
 	index,
+	deletePlayer,
 };
 
 async function create(req, res) {
@@ -29,5 +30,15 @@ async function index(req, res) {
 		res.status(200).json(players);
 	} catch (err) {
 		res.status(400).json(err);
+	}
+}
+
+async function deletePlayer(req, res) {
+	try {
+		deletedPlayer = await PlayerModel.findByIdAndDelete(req.body.p_id).exec();
+		let players = await PlayerModel.find({}).exec();
+		res.status(200).json(players);
+	} catch (err) {
+		res.statis(400).json(err);
 	}
 }
