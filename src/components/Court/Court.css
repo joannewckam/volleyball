@@ -5,6 +5,7 @@
 	width: 350xpx;
 	position: relative;
 	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
 }
 .save {
 	background-color: #f29c46;

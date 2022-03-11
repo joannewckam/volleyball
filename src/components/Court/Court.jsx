@@ -65,22 +65,22 @@ export default function Court () {
     return (
         <>
         <div className="Court">
-                <div className="four">
+                <div className="grid-item">
                 <GreyCircle id={'circle4'} handleStop={handleStop} position={activeFormation.circle4}/>
                 </div>
-                <div className="three">
+                <div className="grid-item">
                 <GreyCircle id={'circle3'} handleStop={handleStop} position={activeFormation.circle3}/>
                 </div>
-                <div className="two">
+                <div className="grid-item">
                 <GreyCircle id={'circle2'} handleStop={handleStop} position={activeFormation.circle2}/>
                 </div>
-                <div className="one">
+                <div className="grid-item">
                 <GreyCircle id={'circle1'} handleStop={handleStop} position={activeFormation.circle1}/>
                 </div>
-                <div className="five">
+                <div className="grid-item">
                 <GreyCircle id={'circle5'} handleStop={handleStop} position={activeFormation.circle5}/>
                 </div>
-                <div className="six">
+                <div className="grid-item">
                 <GreyCircle id={'circle6'} handleStop={handleStop} position={activeFormation.circle6}/>
                 </div>
         </div>
