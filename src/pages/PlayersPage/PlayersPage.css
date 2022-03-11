@@ -28,12 +28,13 @@ h2 {
 }
 
 article {
-	display: flex;
-	justify-content: space-between;
-	min-width: 15rem;
+	display: block;
+	justify-content: space-around;
+	min-width: 10rem;
 	color: white;
-	margin: 0.1rem;
+	margin: 1rem;
 	background-color: #f29c46;
+	border-radius: 5px;
 }
 
 article > div {
@@ -82,6 +83,28 @@ select {
 	outline: none;
 }
 
+.deletePlayer {
+	align-items: center;
+	background-color: white;
+	color: #303747;
+	border-radius: 5px;
+	border: none;
+	outline: none;
+	margin: 5px;
+	font-weight: bold;
+	align-items: left;
+}
+.editPlayer {
+	align-items: center;
+	background-color: white;
+	color: #303747;
+	border-radius: 5px;
+	border: none;
+	outline: none;
+	margin: 5px;
+	font-weight: bold;
+	align-items: left;
+}
 button:hover {
 	color: white;
 	background-color: #bb561c;

@@ -124,7 +124,6 @@ export default class PlayersPage extends Component {
     render() {
     return(
         <>
-            <h2>Players</h2> 
                 <div className="playerContainer">
                     <div className="playerCard">
 
@@ -133,8 +132,8 @@ export default class PlayersPage extends Component {
                             <div>{p.name}</div>
                             <div>{p.position}</div>
                             <div>{p.number}</div>
-                            <button onClick={()=>(this.handleDelete(p._id))}>Delete</button>
-                            <button onClick={()=>(this.handleUpdateChange(p._id))}>Edit</button>
+                            <button className="editPlayer" onClick={()=>(this.handleUpdateChange(p._id))}>Edit</button>
+                            <button className="deletePlayer" onClick={()=>(this.handleDelete(p._id))}>Delete</button>
                             </article>
                     ))}
                     </div>
@@ -158,7 +157,7 @@ export default class PlayersPage extends Component {
                                 <input name='number' value={this.state.number} onChange={this.handleChange}/>
                             </label>
 
-                            <button className="addPlayer"type="submit">{this.state.isEdit? 'Submit' : 'Add Person' } </button>
+                            <button className="addPlayer"type="submit">{this.state.isEdit ? 'Submit' : 'Add Player' } </button>
                         </form> 
                        
                     </section>
