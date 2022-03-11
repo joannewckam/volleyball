@@ -1,7 +1,7 @@
 # myVolleyball App
 
 - An app to help beginner volleyball players learn positions and formations!
-- Also have keep track of team mates you've played with before and their preferred positions
+- Keep track of team mates you've played with before and their preferred positions
 - Save your own formations to share when you play
 
 # Planning:
