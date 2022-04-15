@@ -1,7 +1,6 @@
 nav {
 	display: flex;
 	justify-content: space-around;
-	min-height: 10vh;
 }
 
 .nav-links {

@@ -46,7 +46,6 @@ export default function Court () {
         }
     }
     //reset to default
-
     function handleReset(){
 
     }
@@ -67,7 +66,7 @@ export default function Court () {
 
     return (
         <>
-        <div className="courtConatiner">
+        <div className="courtContainer">
             <div className="Court">
                     <div className="grid-item">
                     <GreyCircle id={'circle4'} handleStop={handleStop} position={activeFormation.circle4}/>
@@ -88,7 +87,7 @@ export default function Court () {
                     <GreyCircle id={'circle6'} handleStop={handleStop} position={activeFormation.circle6}/>
                     </div>
             </div>
-            <div className="formation">
+            <div className="formationForm">
                     <form>
                         <input onChange={(e) => setName(e.target.value)} name="name" className="formationName" type="text" autocomplete="off" placeholder="new formation name"/>
                     </form>

@@ -107,7 +107,3 @@ select {
 	font-weight: bold;
 	align-items: left;
 }
-button:hover {
-	color: white;
-	background-color: #bb561c;
-}
