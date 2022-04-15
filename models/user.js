@@ -7,8 +7,7 @@ const userSchema = new Schema(
 		email: {
 			type: String,
 			unique: true,
-			trim: true, // trims whitespace if your user types something like " alex@123.com " into "alex@123.com"
-			lowercase: true,
+			trim: true,
 			required: true,
 		},
 		password: {
@@ -20,7 +19,6 @@ const userSchema = new Schema(
 	},
 	{
 		timestamps: true,
-		// A cool mongoose trick not to send password to clients!
 		toJSON: {
 			transform: function (doc, ret) {
 				delete ret.password;

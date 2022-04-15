@@ -19,12 +19,11 @@ export default class PlayersPage extends Component {
     }
     handleSubmit = async (e) => {
         e.preventDefault()
+        // check to see isEdit to determine if this is an edit or a new player
         if (this.state.isEdit) {
             this.handleUpdate()
-            
         } else {
-        try {
-            console.log('bypassing?')
+        try { 
             let fetchResponse = await fetch ('/api/players', {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
@@ -38,8 +37,7 @@ export default class PlayersPage extends Component {
             
             let fetchPlayersResponse = await fetch('/api/players')
             let players = await fetchPlayersResponse.json()
-            console.log('playerresponse', players)
-            console.log("Success:", serverResponse)
+            console.log("response", serverResponse)
             this.setState({
                 players: players,
                 name:'',
@@ -53,7 +51,6 @@ export default class PlayersPage extends Component {
     }
     
     handleUpdate = async () => {
-        console.log("updated")
         try {
             let fetchResponse = await fetch ('/api/players', {
                 method: 'PUT',
@@ -93,14 +90,11 @@ export default class PlayersPage extends Component {
 
         }
     }
-
+    //populate form with selected player's info
+    //e is id of player, find idx of with player id
     handleUpdateChange = (e) => {
-        console.log('update change',e)
-
         let map = this.state.players.map((e) => e._id)
-        console.log(map)
         let idx = map.indexOf(e)
-        console.log(this.state.players[idx]._id)
         this.setState({
             id: this.state.players[idx]._id,
             name: this.state.players[idx].name,
@@ -126,7 +120,6 @@ export default class PlayersPage extends Component {
         <>
                 <div className="playerContainer">
                     <div className="playerCard">
-
                     {this.state.players && this.state.players.map(p => (
                         <article key={p._id}>
                             <div>{p.name}</div>
@@ -146,17 +139,19 @@ export default class PlayersPage extends Component {
                             <label>
                                 <span>Position</span>
                                 <select name="position" value={this.state.position} onChange={this.handleChange}>
+                                    <option>Select</option>
                                     <option value="OH">OH</option>
                                     <option value="M">M</option>
                                     <option value="S">S</option>
                                     <option value="RS">RS</option>
                                 </select>
                             </label>
+
                             <label>
                                 <span>Number</span>
                                 <input name='number' value={this.state.number} onChange={this.handleChange}/>
                             </label>
-
+                            {/* toggles same button to submit a new player and to edit a player */}
                             <button className="addPlayer"type="submit">{this.state.isEdit ? 'Submit' : 'Add Player' } </button>
                         </form> 
                        

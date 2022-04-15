@@ -1,7 +1,7 @@
 .GreyCircle {
 	position: absolute;
-	width: 45px;
-	height: 45px;
+	width: 35px;
+	height: 35px;
 	border-radius: 45px;
 	background-color: #303747;
 	z-index: 100;

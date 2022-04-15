@@ -1,5 +1,4 @@
 import './GreyCircle.css'
-// import useDraggable from '../../hooks/use-draggable'
 import Draggable from 'react-draggable'
 
 export default function GreyCircle(props) {

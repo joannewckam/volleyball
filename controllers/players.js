@@ -1,4 +1,4 @@
-const PlayerModel = require("../models/player.js");
+const PlayerModel = require('../models/player.js');
 
 module.exports = {
 	create,
@@ -17,7 +17,7 @@ async function create(req, res) {
 			number: req.body.number,
 		});
 		// 2. send a response to frontend - typically we send back the newly created or just an 'ok'
-		res.status(200).json("Player added!");
+		res.status(200).json('player ok!');
 		console.log(res);
 	} catch (err) {
 		res.json(err);
@@ -54,7 +54,7 @@ async function editPlayer(req, res) {
 				position: req.body.position,
 				number: req.body.number,
 			},
-			{ returnDocument: "after" }
+			{ returnDocument: 'after' }
 		).exec();
 		res.status(200).json(players);
 	} catch (err) {

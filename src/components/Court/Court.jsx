@@ -7,20 +7,20 @@ export default function Court () {
         {})
     const [formations, setFormations] = useState([])
     const [activeFormation, setActiveFormation] = useState({})
-    const [name, setName] = useState ('name')
+    const [name, setName] = useState ('')
 
+    //set positions to array in state
     function handleStop(e, data) {
         let curPositions = {...positions}
         const circleId = e.target.id
         curPositions[circleId]= {}
         curPositions[circleId]['x']= data.x
         curPositions[circleId]['y']= data.y
-
         setPositions(curPositions)
-        console.log(curPositions[circleId])
     }
+
+    //save formation to database
     async function saveFormation() {
-        console.log('i am saveFormation')
         try {
             let fetchResponse = await fetch('/api/formations', {
                 method: 'POST',
@@ -45,8 +45,13 @@ export default function Court () {
             console.error('Error', err)
         }
     }
+    //reset to default
+
+    function handleReset(){
+
+    }
+    //change displayed formation to saved formation
     async function changeFormation(evt) {
-        console.log('I am changeFormation')
         setActiveFormation(formations[evt.target.value])
     }
 
@@ -54,51 +59,51 @@ export default function Court () {
         async function fetchFormation(){
             let fetchFormationsResponse = await fetch('/api/formations')
                 if (!fetchFormationsResponse.ok) throw new Error('Fetch failed - Bad request')
-            console.log(fetchFormationsResponse)
             let formations = await fetchFormationsResponse.json()
             setFormations(formations)
-            console.log(formations)
         }
         fetchFormation()
     },[])
 
     return (
         <>
-        <div className="Court">
-                <div className="grid-item">
-                <GreyCircle id={'circle4'} handleStop={handleStop} position={activeFormation.circle4}/>
-                </div>
-                <div className="grid-item">
-                <GreyCircle id={'circle3'} handleStop={handleStop} position={activeFormation.circle3}/>
-                </div>
-                <div className="grid-item">
-                <GreyCircle id={'circle2'} handleStop={handleStop} position={activeFormation.circle2}/>
-                </div>
-                <div className="grid-item">
-                <GreyCircle id={'circle1'} handleStop={handleStop} position={activeFormation.circle1}/>
-                </div>
-                <div className="grid-item">
-                <GreyCircle id={'circle5'} handleStop={handleStop} position={activeFormation.circle5}/>
-                </div>
-                <div className="grid-item">
-                <GreyCircle id={'circle6'} handleStop={handleStop} position={activeFormation.circle6}/>
-                </div>
-        </div>
-        <div className="formation">
-                <select name="formation" onChange={changeFormation}>
-                    {formations.length ?
-                    formations.map((f, index)=> (<option value={index} key={f.id}>{f.name}</option>))
-                    :
-                    "No saved formations yet"
-                    }
-                </select>
-
-                <form>
-                    <input value={name} onChange={(e) => setName(e.target.value)} name="name" className="formationName" type="text" autocomplete="off"/>
-                </form>
-                <button className="save" onClick={saveFormation}>Save</button>
-
-        </div>        
+        <div className="courtConatiner">
+            <div className="Court">
+                    <div className="grid-item">
+                    <GreyCircle id={'circle4'} handleStop={handleStop} position={activeFormation.circle4}/>
+                    </div>
+                    <div className="grid-item">
+                    <GreyCircle id={'circle3'} handleStop={handleStop} position={activeFormation.circle3}/>
+                    </div>
+                    <div className="grid-item">
+                    <GreyCircle id={'circle2'} handleStop={handleStop} position={activeFormation.circle2}/>
+                    </div>
+                    <div className="grid-item">
+                    <GreyCircle id={'circle1'} handleStop={handleStop} position={activeFormation.circle1}/>
+                    </div>
+                    <div className="grid-item">
+                    <GreyCircle id={'circle5'} handleStop={handleStop} position={activeFormation.circle5}/>
+                    </div>
+                    <div className="grid-item">
+                    <GreyCircle id={'circle6'} handleStop={handleStop} position={activeFormation.circle6}/>
+                    </div>
+            </div>
+            <div className="formation">
+                    <form>
+                        <input onChange={(e) => setName(e.target.value)} name="name" className="formationName" type="text" autocomplete="off" placeholder="new formation name"/>
+                    </form>
+                    <button className="save" onClick={saveFormation}>Save</button>
+                    <button className="save" onClick={handleReset}>Reset</button>
+                    <p>Select a formation</p>
+                    <select name="formation" onChange={changeFormation}>
+                        {formations.length ?
+                        formations.map((f, index)=> (<option value={index} key={f.id}>{f.name}</option>))
+                        :
+                       <option>"No saved formations yet" </option>
+                        }
+                    </select>
+            </div>     
+        </div>   
         </>
     )
 }

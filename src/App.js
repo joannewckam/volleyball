@@ -1,12 +1,12 @@
-import "./App.css";
-import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
-import Nav from "./components/Nav/Nav";
-import Header from "./components/Header/Header";
-import Gym from "./components/Gym/Gym";
-import LoginForm from "./components/LoginForm/LoginForm";
-import AuthPage from "./pages/AuthPage/AuthPage";
-import PlayersPage from "./pages/PlayersPage/PlayersPage";
+import './App.css';
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import Nav from './components/Nav/Nav';
+import Header from './components/Header/Header';
+import Court from './components/Court/Court';
+import LoginForm from './components/LoginForm/LoginForm';
+import AuthPage from './pages/AuthPage/AuthPage';
+import PlayersPage from './pages/PlayersPage/PlayersPage';
 
 export default class App extends Component {
 	state = {
@@ -17,15 +17,15 @@ export default class App extends Component {
 	};
 	removeUserFromState = () => {
 		this.setState({ user: null });
-		localStorage.removeItem("token");
+		localStorage.removeItem('token');
 	};
 
 	componentDidMount() {
-		let token = localStorage.getItem("token");
+		let token = localStorage.getItem('token');
 		if (token) {
-			const payload = JSON.parse(atob(token.split(".")[1]));
+			const payload = JSON.parse(atob(token.split('.')[1]));
 			if (payload.exp < Date.now() / 1000) {
-				localStorage.removeItem("token");
+				localStorage.removeItem('token');
 				token = null;
 			} else {
 				let userDoc = payload.user;
@@ -36,13 +36,13 @@ export default class App extends Component {
 
 	render() {
 		return (
-			<main className="App">
+			<main className='App'>
 				<Header />
 				{this.state.user ? (
 					<Switch>
-						<Route path="/" exact component={Gym} />
-						<Route path="/login" render={(props) => <LoginForm {...props} />} />
-						<Route path="/players" render={(props) => <PlayersPage {...props} />} />
+						<Route path='/' exact component={Court} />
+						<Route path='/login' render={(props) => <LoginForm {...props} />} />
+						<Route path='/players' render={(props) => <PlayersPage {...props} />} />
 					</Switch>
 				) : (
 					<AuthPage user={this.state.user} setUserInState={this.setUserInState} />
