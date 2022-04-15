@@ -3,11 +3,10 @@ import GreyCircle from "../GreyCircle/GreyCircle"
 import { useEffect, useState } from 'react'
 
 export default function Court () {
-    const [positions, setPositions]= useState(
-        {})
+    const [positions, setPositions]= useState({})
     const [formations, setFormations] = useState([])
     const [activeFormation, setActiveFormation] = useState({})
-    const [name, setName] = useState ('')
+    const [name, setName] = useState('')
 
     //set positions to array in state
     function handleStop(e, data) {
@@ -69,22 +68,22 @@ export default function Court () {
         <div className="courtContainer">
             <div className="Court">
                     <div className="grid-item">
-                    <GreyCircle id={'circle4'} handleStop={handleStop} position={activeFormation.circle4}/>
+                    <GreyCircle id={'OH'} handleStop={handleStop} position={activeFormation.circle4}/>
                     </div>
                     <div className="grid-item">
-                    <GreyCircle id={'circle3'} handleStop={handleStop} position={activeFormation.circle3}/>
+                    <GreyCircle id={'OH'} handleStop={handleStop} position={activeFormation.circle3}/>
                     </div>
                     <div className="grid-item">
-                    <GreyCircle id={'circle2'} handleStop={handleStop} position={activeFormation.circle2}/>
+                    <GreyCircle id={'M'} handleStop={handleStop} position={activeFormation.circle2}/>
                     </div>
                     <div className="grid-item">
-                    <GreyCircle id={'circle1'} handleStop={handleStop} position={activeFormation.circle1}/>
+                    <GreyCircle id={'M'} handleStop={handleStop} position={activeFormation.circle1}/>
                     </div>
                     <div className="grid-item">
-                    <GreyCircle id={'circle5'} handleStop={handleStop} position={activeFormation.circle5}/>
+                    <GreyCircle id={'S'} handleStop={handleStop} position={activeFormation.circle5}/>
                     </div>
                     <div className="grid-item">
-                    <GreyCircle id={'circle6'} handleStop={handleStop} position={activeFormation.circle6}/>
+                    <GreyCircle id={'RS'} handleStop={handleStop} position={activeFormation.circle6}/>
                     </div>
             </div>
             <div className="formationForm">
